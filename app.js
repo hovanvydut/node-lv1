@@ -3,7 +3,9 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+
 var expressLayouts = require("express-ejs-layouts");
+const systemConfig = require("./configs/system.js");
 
 var app = express();
 
@@ -17,10 +19,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
 app.use(expressLayouts);
 
-app.use("/admin", require("./routes/backend/index.js"));
+app.locals.systemConfig = systemConfig;
+
+app.use(`/${systemConfig.prefixAdmin}`, require("./routes/backend/index.js"));
 app.use("/", require("./routes/frontend/index.js"));
 
 // catch 404 and forward to error handler
