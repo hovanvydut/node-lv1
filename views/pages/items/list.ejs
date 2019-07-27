@@ -7,7 +7,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 Search & Filter
-                <a href="<%= prefixAdmin %>/item">
+                <a href="<%= systemConfig.prefixAdmin %>/item">
                     <span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
                 </a>
             </div>
@@ -16,21 +16,21 @@
                 <div class="row">
                     <div class="status-list col-sm-6 pl0">
 
-                        <a class="btn m-b-sm btn-success btn-sm" href="<%= prefixAdmin %>/item/all">
+                        <a class="btn m-b-sm btn-success btn-sm" href="<%= systemConfig.prefixAdmin %>/item/all">
                             ALL (4)
                         </a>
 
-                        <a class="btn m-b-sm btn-default btn-sm" href="<%= prefixAdmin %>/item/active">
+                        <a class="btn m-b-sm btn-default btn-sm" href="<%= systemConfig.prefixAdmin %>/item/active">
                             ACTIVE (4)
                         </a>
 
-                        <a class="btn m-b-sm btn-default btn-sm" href="<%= prefixAdmin %>/item/inactive">
+                        <a class="btn m-b-sm btn-default btn-sm" href="<%= systemConfig.prefixAdmin %>/item/inactive">
                             INACTIVE (0)
                         </a>
 
                     </div>
                     <div class="col-sm-6">
-                        <form action="<%= prefixAdmin %>/item/all" method="GET">
+                        <form action="<%= systemConfig.prefixAdmin %>/item/all" method="GET">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="search" placeholder="Search for..."
                                     value="">
@@ -41,7 +41,7 @@
                                 </span>
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="button"><a
-                                            href="<%= prefixAdmin %>/group/all">Clear</a></button>
+                                            href="<%= systemConfig.prefixAdmin %>/group/all">Clear</a></button>
                                 </span>
                             </div>
                         </form>
@@ -64,23 +64,23 @@
                     <div class="zcontrols">
                         <select name="action" class="form-control slbAction">
                             <option value="">Bulk Action</option>
-                            <option value="<%= prefixAdmin %>/item/change-status/active">
+                            <option value="<%= systemConfig.prefixAdmin %>/item/change-status/active">
                                 Active
                             </option>
-                            <option value="<%= prefixAdmin %>/item/change-status/inactive">
+                            <option value="<%= systemConfig.prefixAdmin %>/item/change-status/inactive">
                                 InActive
                             </option>
-                            <option value="<%= prefixAdmin %>/item/save-ordering/">
+                            <option value="<%= systemConfig.prefixAdmin %>/item/save-ordering/">
                                 Change Ordering
                             </option>
-                            <option value="<%= prefixAdmin %>/item/delete/">
+                            <option value="<%= systemConfig.prefixAdmin %>/item/delete/">
                                 Delete
                             </option>
                         </select>
                         <button class="btn btn-info btnAction" type="button" id="btn-action" value="btnAction"
                             disabled>Apply</button>
                         <div class="pull-right">
-                            <a href="<%= prefixAdmin %>/items/add" class="btn btn-warning btn-addNew">Add New
+                            <a href="<%= systemConfig.prefixAdmin %>/items/add" class="btn btn-warning btn-addNew">Add New
                             </a>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                                     </td>
                                     <td>
 
-                                        <a href="<%= prefixAdmin %>/item/change-status/5a9e5a96da67bc078421d7d6/active">
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/change-status/5a9e5a96da67bc078421d7d6/active">
 
                                             <span class="label label-success">active</span>
 
@@ -125,9 +125,9 @@
                                         <input type="number" value="2" class="text-center ordering">
                                     </td>
                                     <td>
-                                        <a href="<%= prefixAdmin %>/item/form/5a9e5a96da67bc078421d7d6" type="button"
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/form/5a9e5a96da67bc078421d7d6" type="button"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="<%= prefixAdmin %>/item/delete/5a9e5a96da67bc078421d7d6" type="button"
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/delete/5a9e5a96da67bc078421d7d6" type="button"
                                             class="btn btn-danger btn-sm btn-delete">Delete</a>
                                     </td>
                                 </tr>
@@ -144,7 +144,7 @@
                                     </td>
                                     <td>
 
-                                        <a href="<%= prefixAdmin %>/item/change-status/5abdc9aa598c600b6c7fd56b/active">
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/change-status/5abdc9aa598c600b6c7fd56b/active">
 
                                             <span class="label label-success">active</span>
 
@@ -155,9 +155,9 @@
                                         <input type="number" value="3" class="text-center ordering">
                                     </td>
                                     <td>
-                                        <a href="<%= prefixAdmin %>/item/form/5abdc9aa598c600b6c7fd56b" type="button"
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/form/5abdc9aa598c600b6c7fd56b" type="button"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="<%= prefixAdmin %>/item/delete/5abdc9aa598c600b6c7fd56b" type="button"
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/delete/5abdc9aa598c600b6c7fd56b" type="button"
                                             class="btn btn-danger btn-sm btn-delete">Delete</a>
                                     </td>
                                 </tr>
@@ -174,7 +174,7 @@
                                     </td>
                                     <td>
 
-                                        <a href="<%= prefixAdmin %>/item/change-status/5af7d6a306b3d71a08df04b1/active">
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/change-status/5af7d6a306b3d71a08df04b1/active">
 
                                             <span class="label label-success">active</span>
 
@@ -185,9 +185,9 @@
                                         <input type="number" value="3" class="text-center ordering">
                                     </td>
                                     <td>
-                                        <a href="<%= prefixAdmin %>/item/form/5af7d6a306b3d71a08df04b1" type="button"
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/form/5af7d6a306b3d71a08df04b1" type="button"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="<%= prefixAdmin %>/item/delete/5af7d6a306b3d71a08df04b1" type="button"
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/delete/5af7d6a306b3d71a08df04b1" type="button"
                                             class="btn btn-danger btn-sm btn-delete">Delete</a>
                                     </td>
                                 </tr>
@@ -204,7 +204,7 @@
                                     </td>
                                     <td>
 
-                                        <a href="<%= prefixAdmin %>/item/change-status/5af7d6d506b3d71a08df04b2/active">
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/change-status/5af7d6d506b3d71a08df04b2/active">
 
                                             <span class="label label-success">active</span>
 
@@ -215,9 +215,9 @@
                                         <input type="number" value="3" class="text-center ordering">
                                     </td>
                                     <td>
-                                        <a href="<%= prefixAdmin %>/item/form/5af7d6d506b3d71a08df04b2" type="button"
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/form/5af7d6d506b3d71a08df04b2" type="button"
                                             class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="<%= prefixAdmin %>/item/delete/5af7d6d506b3d71a08df04b2" type="button"
+                                        <a href="<%= systemConfig.prefixAdmin %>/item/delete/5af7d6d506b3d71a08df04b2" type="button"
                                             class="btn btn-danger btn-sm btn-delete">Delete</a>
                                     </td>
                                 </tr>
@@ -252,17 +252,17 @@
 
                         <li class="disabled"><a>«</a></li>
 
-                        <li><a href="<%= prefixAdmin %>/item/page=1">1</a></li>
+                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=1">1</a></li>
 
                         <li class="active"><a>2</a></li>
 
-                        <li><a href="<%= prefixAdmin %>/item/page=3">3</a></li>
+                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=3">3</a></li>
 
-                        <li><a href="<%= prefixAdmin %>/item/page=4">4</a></li>
+                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=4">4</a></li>
 
-                        <li><a href="<%= prefixAdmin %>/item/page=5">5</a></li>
+                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=5">5</a></li>
 
-                        <li><a href="<%= prefixAdmin %>/item/page=0">»</a></li>
+                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=0">»</a></li>
 
                     </ul>
 
