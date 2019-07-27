@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <%- include('./elements/header.ejs') -%>
+</head>
+
+<body>
+    <div id="wrapper">
+        <%- include('./elements/navbar.ejs') -%>
+        <div id="page-wrapper">
+            <%- include('./elements/page-title.ejs') -%>
+            <%- body %>
+        </div>
+    </div>
+
+    <%- include('./elements/scripts.ejs') -%>
+</body>
+
+</html>
