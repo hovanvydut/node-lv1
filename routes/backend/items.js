@@ -4,13 +4,16 @@ var router = express.Router();
 const ItemsModel = require("./../../schemas/items.js");
 
 router.get("/", (req, res) => {
-	// ItemsModel.find({}, (err, items) => {
-	// 	err ? console.log(err) : console.log(items);
-	// });
+	let statusFilter = [
+		{ name: "All", count: 4, link: "#", class: "default" },
+		{ name: "Active", count: 4, link: "#", class: "default" },
+		{ name: "Inactive", count: 4, link: "#", class: "default" }
+	];
 	ItemsModel.find({}).then(items => {
 		res.render("pages/items/list", {
 			title: "Item List Page",
-			items: items
+			items,
+			statusFilter
 		});
 	});
 });

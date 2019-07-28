@@ -37,6 +37,7 @@ app.use(expressLayouts);
 
 app.locals.systemConfig = systemConfig;
 
+// define route
 app.use(`/${systemConfig.prefixAdmin}`, require("./routes/backend/index.js"));
 app.use("/", require("./routes/frontend/index.js"));
 
