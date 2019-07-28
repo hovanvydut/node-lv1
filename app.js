@@ -13,33 +13,12 @@ const systemConfig = require("./configs/system.js");
 
 // connection to db, use mlab
 mongoose.connect("mongodb://abc:123456abc@ds135790.mlab.com:35790/todolist", {
-  useNewUrlParser: true
+	useNewUrlParser: true
 });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
-db.once("open", function() {
-  console.log("connect to db successfully!");
-});
-
-var Schema = mongoose.Schema;
-var kittySchema = new mongoose.Schema({
-  name: String
-});
-
-kittySchema.methods.speak = function() {
-  var gretting = this.name ? "Meow name is " + this.name : "I dont have name";
-  console.log(gretting);
-};
-var Kitten = mongoose.model("Kitten", kittySchema);
-
-var silence = new Kitten({ name: "Silence" });
-console.log(silence.name);
-silence.speak();
-
-var fluffy = new Kitten({ name: "fluffy" });
-fluffy.speak();
-fluffy.save(function(err, fluffy) {
-  err ? console.error(err) : fluffy.speak();
+db.once("open", () => {
+	console.log("connect to db successfully!");
 });
 
 var app = express();
@@ -62,19 +41,19 @@ app.use(`/${systemConfig.prefixAdmin}`, require("./routes/backend/index.js"));
 app.use("/", require("./routes/frontend/index.js"));
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use((req, res, next) => {
+	next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+app.use((err, req, res, next) => {
+	// set locals, only providing error in development
+	res.locals.message = err.message;
+	res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("pages/error", { title: "Error Page" });
+	// render the error page
+	res.status(err.status || 500);
+	res.render("pages/error", { title: "Error Page" });
 });
 
 module.exports = app;
