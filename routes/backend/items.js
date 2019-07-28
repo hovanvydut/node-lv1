@@ -2,13 +2,10 @@ var express = require("express");
 var router = express.Router();
 
 const ItemsModel = require("./../../schemas/items.js");
+const UtilsHelper = require("./../../helper/utils.js");
 
 router.get("/", (req, res) => {
-	let statusFilter = [
-		{ name: "All", count: 4, link: "#", class: "default" },
-		{ name: "Active", count: 4, link: "#", class: "default" },
-		{ name: "Inactive", count: 4, link: "#", class: "default" }
-	];
+	let statusFilter = UtilsHelper.createFilterStatus();
 	ItemsModel.find({}).then(items => {
 		res.render("pages/items/list", {
 			title: "Item List Page",

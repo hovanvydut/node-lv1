@@ -16,13 +16,9 @@
 
             <div class="panel-body">
                 <div class="row">
-                    <div class="status-list col-sm-6 pl0">
-                    <% statusFilter.forEach(item => { %>
-                        <a class="btn m-b-sm btn-<%= item.class %> btn-sm" href="<%= item.link %>"> 
-                            <%= item.name.toUpperCase() %> (<%= item.count %>)
-                        </a>
-                    <% }) %>
-                    </div>
+                    <!-- status Filter -->
+                    <% include ./../../helper/filter-status.ejs %>
+                    <% filterStatusHelper(statusFilter) %>
 
                     <div class="col-sm-6">
                         <form action="<%= systemConfig.prefixAdmin %>/item/all" method="GET">
