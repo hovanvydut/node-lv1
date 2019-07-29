@@ -23,14 +23,14 @@
                     <div class="col-sm-6">
                         <form action="<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="keyword" placeholder="Search for..."
-                                    value="">
+                                <input type="text" class="form-control" name="keyword" placeholder="Search for..."value="<%= keyword %>">
                                 <span class="input-group-btn">
                                     <button class="btn btn-info" type="submit">Search</button>
                                 </span>
                                 <span class="input-group-btn">
-                                    <button class="btn btn-success" type="button"><a
-                                            href="<%= systemConfig.prefixAdmin %>/group/all">Clear</a></button>
+                                    <button class="btn btn-success" type="button">
+                                        <a href="<%= systemConfig.prefixAdmin %>/group/all">Clear</a>
+                                    </button>
                                 </span>
                             </div>
                         </form>
