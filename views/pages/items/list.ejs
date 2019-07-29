@@ -21,12 +21,10 @@
                     <% filterStatusHelper(statusFilter) %>
 
                     <div class="col-sm-6">
-                        <form action="<%= systemConfig.prefixAdmin %>/item/all" method="GET">
+                        <form action="<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="search" placeholder="Search for..."
+                                <input type="text" class="form-control" name="keyword" placeholder="Search for..."
                                     value="">
-                                <input type="hidden" value="all">
-
                                 <span class="input-group-btn">
                                     <button class="btn btn-info" type="submit">Search</button>
                                 </span>

@@ -7,6 +7,8 @@ const ParamsHelper = require("./../../helper/params.js");
 
 router.get("/(:status)?", (req, res) => {
 	let currentStatus = ParamsHelper.getParam(req.params, "status", "all");
+	let keyword = ParamsHelper.getParam(req.query, "keyword", "");
+	console.log(keyword);
 
 	let statusFilter = UtilsHelper.createFilterStatus(currentStatus);
 	let condition = {};
@@ -18,7 +20,8 @@ router.get("/(:status)?", (req, res) => {
 		res.render("pages/items/list", {
 			title: "Item List Page",
 			items,
-			statusFilter
+			statusFilter,
+			currentStatus
 		});
 	});
 });
