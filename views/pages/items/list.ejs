@@ -9,7 +9,7 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 Search & Filter
-                <a href="<%= systemConfig.prefixAdmin %>/item">
+                <a href="<%= systemConfig.prefixAdmin %>/items/all">
                     <span id="icon-reload" class="glyphicon glyphicon-refresh"></span>
                 </a>
             </div>
@@ -21,6 +21,7 @@
                     <% filterStatusHelper(statusFilter) %>
 
                     <div class="col-sm-6">
+                        <!-- Form search --> 
                         <form action="<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>" method="GET">
                             <div class="input-group">
                                 <input type="text" class="form-control" name="keyword" placeholder="Search for..."value="<%= keyword %>">
@@ -29,7 +30,7 @@
                                 </span>
                                 <span class="input-group-btn">
                                     <button class="btn btn-success" type="button">
-                                        <a href="<%= systemConfig.prefixAdmin %>/group/all">Clear</a>
+                                        <a href="<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>">Clear</a>
                                     </button>
                                 </span>
                             </div>
