@@ -14,11 +14,11 @@ router.get("/(:status)?", (req, res) => {
 
 	if (currentStatus === "all") {
 		if (keyword !== "") {
-			condition = { name: keyword };
+			condition = { name: new RegExp(keyword, "gi") };
 		}
 	} else {
 		if (keyword !== "") {
-			condition = { status: currentStatus, name: keyword };
+			condition = { status: currentStatus, name: new RegExp(keyword, "gi") };
 		} else {
 			condition = { status: currentStatus };
 		}
