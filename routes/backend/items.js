@@ -24,15 +24,17 @@ router.get("/(:status)?", (req, res) => {
 		}
 	}
 
-	ItemsModel.find(condition).then(items => {
-		res.render("pages/items/list", {
-			title: "Item List Page",
-			items,
-			statusFilter,
-			currentStatus,
-			keyword
+	ItemsModel.find(condition)
+		.sort({ ordering: "ascending" })
+		.then(items => {
+			res.render("pages/items/list", {
+				title: "Item List Page",
+				items,
+				statusFilter,
+				currentStatus,
+				keyword
+			});
 		});
-	});
 });
 
 router.get("/add", (req, res) => {
