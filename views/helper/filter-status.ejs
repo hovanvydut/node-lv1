@@ -1,5 +1,3 @@
-
-
 <% 
 filterStatusHelper = (statusFilter, keyword) => {  
     let xhtml = '';
@@ -8,7 +6,7 @@ filterStatusHelper = (statusFilter, keyword) => {
         if (keyword !== '' & keyword !== undefined) link+= '?keyword=' + keyword;
         xhtml+= `<a class="btn m-b-sm btn-${item.class} btn-sm" href='${link}'> 
                 ${item.name.toUpperCase()} (${item.count})
-                </a>`;
+                </a> `;
     })
     return `
         <div class="status-list col-sm-6 pl0">
