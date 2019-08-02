@@ -1,5 +1,5 @@
 <!-- items is rendered from routes items.js|| items is array -->
-<%= JSON.stringify(statusFilter) %>
+<!-- <%= JSON.stringify(statusFilter) %> -->
 <div class="alert alert-success" role="alert">
     <span class="close-btn">&times;</span> Thay đổi Status thành công
 </div>
@@ -18,13 +18,14 @@
                 <div class="row">
                     <!-- status Filter -->
                     <% include ./../../helper/filter-status.ejs %>
-                    <% filterStatusHelper(statusFilter, keyword) %>
+                    <%- filterStatusHelper(statusFilter, keyword) %>
 
                     <div class="col-sm-6">
-                        <!-- Form search --> 
+                        <!-- Form search -->
                         <form action="<%= systemConfig.prefixAdmin %>/items/<%= currentStatus %>" method="GET">
                             <div class="input-group">
-                                <input type="text" class="form-control" name="keyword" placeholder="Search for..."value="<%= keyword %>">
+                                <input type="text" class="form-control" name="keyword" placeholder="Search for..."
+                                    value="<%= keyword %>">
                                 <span class="input-group-btn">
                                     <button class="btn btn-info" type="submit">Search</button>
                                 </span>
@@ -86,7 +87,6 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Status</th>
-                                    <!-- <th width="30%">Content</th> -->
                                     <th>Ordering</th>
                                     <th>Action</th>
                                 </tr>
@@ -100,7 +100,7 @@
                                     <td><%= idx+1 %></td>
                                     <td><%= item.name %></td>
                                     <td>
-                                        <%= statusHelper(item.status,'#') %>
+                                        <%- statusHelper(item.status,'#') %>
                                     </td>
                                     <td><input type="number" value="<%= item.ordering %>" class="text-center ordering">
                                     </td>
@@ -119,45 +119,7 @@
             </div>
         </div>
     </div>
-
-    <div class="col-lg-12">
-        <div class="panel panel-info" id="pagination">
-            <div class="panel-heading">
-                Pagination
-                <span>^</span>
-                <span class="label label-warning">Total pages: 0</span>
-                <span class="label label-danger">Total entries: 0</span>
-            </div>
-
-            <div class="panel-body">
-                <div class="infor-pagination">
-
-                    <p>Number of elements on the page: <span>0</span></p>
-
-                    <p>Showing <span> 0 </span> to <span>0</span> of <span>0</span> entries</p>
-                </div>
-                <div class="ad-pagination">
-
-                    <ul class="pagination text-center">
-
-                        <li class="disabled"><a>«</a></li>
-
-                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=1">1</a></li>
-
-                        <li class="active"><a>2</a></li>
-
-                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=3">3</a></li>
-
-                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=4">4</a></li>
-
-                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=5">5</a></li>
-
-                        <li><a href="<%= systemConfig.prefixAdmin %>/item/page=0">»</a></li>
-
-                    </ul>
-
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Pagination -->
+    <% include ./../../helper/pagination.ejs %>
+    <%- paginationHelper(pagination, 'items',currentStatus, keyword) %>
 </div>
