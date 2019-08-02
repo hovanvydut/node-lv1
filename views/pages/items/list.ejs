@@ -119,8 +119,7 @@
             </div>
         </div>
     </div>
-
     <!-- Pagination -->
     <% include ./../../helper/pagination.ejs %>
-    <%- paginationHelper(pagination) %>
+    <%- paginationHelper(pagination, 'items',currentStatus, keyword) %>
 </div>
