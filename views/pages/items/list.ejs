@@ -96,7 +96,7 @@
                                 <% include ./../../helper/status.ejs %>
                                 <% items.forEach((item, idx) => { %>
                                 <tr>
-                                    <td><input type="checkbox" name="cid" value="5a9e5a96da67bc078421d7d6" /></td>
+                                    <td><input type="checkbox" name="cid" value="" /></td>
                                     <td><%= idx+1 %></td>
                                     <td><%= item.name %></td>
                                     <td>
@@ -106,7 +106,7 @@
                                     </td>
                                     <td>
                                         <a href="#" type="button" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="#" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                                        <a href="<%= systemConfig.prefixAdmin %>/items/delete/<%= item._id %>" type="button" class="btn btn-danger btn-sm btn-delete" onclick="deleteItems()">Delete</a>
                                     </td>
                                 </tr>
                                 <% }); %>
@@ -123,3 +123,11 @@
     <% include ./../../helper/pagination.ejs %>
     <%- paginationHelper(pagination, 'items',currentStatus, keyword) %>
 </div>
+<script>
+function deleteItems() {
+  confirm("Do you want delete this item!");
+}
+function changeStatus() {
+    confirm('Do you want to change this status of item');
+}
+</script>
