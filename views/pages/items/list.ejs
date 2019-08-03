@@ -100,7 +100,7 @@
                                     <td><%= idx+1 %></td>
                                     <td><%= item.name %></td>
                                     <td>
-                                        <%- statusHelper(item.status,'#') %>
+                                        <%- statusHelper('items',item.status, item._id) %>
                                     </td>
                                     <td><input type="number" value="<%= item.ordering %>" class="text-center ordering">
                                     </td>
