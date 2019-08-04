@@ -55,24 +55,24 @@
                     <div class="zcontrols">
                         <select name="action" class="form-control slbAction">
                             <option value="">Bulk Action</option>
-                            <option value="<%= systemConfig.prefixAdmin %>/item/change-status/active">
+                            <option value="<%= systemConfig.prefixAdmin %>/items/change-status/active">
                                 Active
                             </option>
-                            <option value="<%= systemConfig.prefixAdmin %>/item/change-status/inactive">
+                            <option value="<%= systemConfig.prefixAdmin %>/items/change-status/inactive">
                                 InActive
                             </option>
-                            <option value="<%= systemConfig.prefixAdmin %>/item/save-ordering/">
+                            <option value="<%= systemConfig.prefixAdmin %>/items/save-ordering/">
                                 Change Ordering
                             </option>
-                            <option value="<%= systemConfig.prefixAdmin %>/item/delete/">
+                            <option value="<%= systemConfig.prefixAdmin %>/items/delete/">
                                 Delete
                             </option>
                         </select>
                         <button class="btn btn-info btnAction" type="button" id="btn-action" value="btnAction"
                             disabled>Apply</button>
                         <div class="pull-right">
-                            <a href="<%= systemConfig.prefixAdmin %>/items/add" class="btn btn-warning btn-addNew">Add
-                                New
+                            <a href="<%= systemConfig.prefixAdmin %>/items/add" class="btn btn-warning btn-addNew">
+                                Add New
                             </a>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                                 <% include ./../../helper/status.ejs %>
                                 <% items.forEach((item, idx) => { %>
                                 <tr>
-                                    <td><input type="checkbox" name="cid" value="" /></td>
+                                    <td><input type="checkbox" name="cid" value="<%= item._id %>" /></td>
                                     <td><%= idx+1 %></td>
                                     <td><%= item.name %></td>
                                     <td>
@@ -106,12 +106,10 @@
                                     </td>
                                     <td>
                                         <a href="#" type="button" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="<%= systemConfig.prefixAdmin %>/items/delete/<%= item._id %>" type="button" class="btn btn-danger btn-sm btn-delete" onclick="deleteItems()">Delete</a>
+                                        <a href="<%= systemConfig.prefixAdmin %>/items/delete/<%= item._id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
                                     </td>
                                 </tr>
                                 <% }); %>
-
-
                             </tbody>
                         </table>
                     </div>
@@ -123,11 +121,3 @@
     <% include ./../../helper/pagination.ejs %>
     <%- paginationHelper(pagination, 'items',currentStatus, keyword) %>
 </div>
-<script>
-function deleteItems() {
-  confirm("Do you want delete this item!");
-}
-function changeStatus() {
-    confirm('Do you want to change this status of item');
-}
-</script>

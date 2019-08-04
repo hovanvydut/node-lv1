@@ -66,6 +66,26 @@ router.get("/change-status/:id/:status", (req, res, next) => {
 	});
 });
 
+// change status - multi
+router.post("/change-status/:status", (req, res, next) => {
+	let currentStatus = ParamsHelper.getParam(req.params, "status", "active");
+	console.log(req.body);
+	ItemsModel.updateMany(
+		{ _id: { $in: req.body.cid } },
+		{ status: currentStatus },
+		(err, raw) => {
+			res.redirect(linkIndex);
+		}
+	);
+});
+
+router.post("/delete", (req, res, next) => {
+	console.log(req.body.cid);
+	ItemsModel.remove({ _id: { $in: req.body.cid } }, err => {
+		res.redirect(linkIndex);
+	});
+});
+
 // Delete Item
 router.get("/delete/:id", (req, res, next) => {
 	// let systemConfig = req.app.locals.systemConfig;
