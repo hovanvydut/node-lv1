@@ -69,7 +69,6 @@ router.get("/change-status/:id/:status", (req, res, next) => {
 // change status - multi
 router.post("/change-status/:status", (req, res, next) => {
 	let currentStatus = ParamsHelper.getParam(req.params, "status", "active");
-	console.log(req.body);
 	ItemsModel.updateMany(
 		{ _id: { $in: req.body.cid } },
 		{ status: currentStatus },
@@ -80,7 +79,6 @@ router.post("/change-status/:status", (req, res, next) => {
 });
 
 router.post("/delete", (req, res, next) => {
-	console.log(req.body.cid);
 	ItemsModel.remove({ _id: { $in: req.body.cid } }, err => {
 		res.redirect(linkIndex);
 	});
@@ -92,6 +90,28 @@ router.get("/delete/:id", (req, res, next) => {
 	ItemsModel.deleteOne({ _id: req.params.id }, err => {
 		res.redirect(linkIndex);
 	});
+});
+
+// Change ordering - Multi
+router.post("/change-ordering", (req, res, next) => {
+	let cids = req.body.cid;
+	let ordering = req.body.ordering;
+	if (Array.isArray(cids)) {
+		cids.forEach((id, idx) => {
+			ItemsModel.updateOne(
+				{ _id: id },
+				{ ordering: parseInt(ordering[idx]) },
+				(err, raw) => {}
+			);
+		});
+	} else {
+		ItemsModel.updateOne(
+			{ _id: cids },
+			{ ordering: parseInt(ordering) },
+			(err, raw) => {}
+		);
+	}
+	res.redirect(linkIndex);
 });
 
 router.get("/add", (req, res) => {

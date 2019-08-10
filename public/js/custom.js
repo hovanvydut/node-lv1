@@ -16,7 +16,7 @@ $(document).ready(function () {
     //check all
     ckbAll.click(function () {
         $('input:checkbox').not(this).prop('checked', this.checked);
-        $(".ordering").attr("name", "ordering");
+        // $(".ordering").attr("name", "ordering");
     });
     // hiden notify
     hiddenNotify(".close-btn");
