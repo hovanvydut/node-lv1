@@ -1,12 +1,14 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
 
 // 3rd module
-var expressLayouts = require("express-ejs-layouts");
-var mongoose = require("mongoose");
+const expressLayouts = require("express-ejs-layouts");
+const mongoose = require("mongoose");
+const flash = require("express-flash-notification");
+const session = require("express-session");
 
 // module by me
 const systemConfig = require("./configs/system.js");
@@ -15,13 +17,13 @@ const systemConfig = require("./configs/system.js");
 mongoose.connect("mongodb://abc:123456abc@ds135790.mlab.com:35790/todolist", {
 	useNewUrlParser: true
 });
-var db = mongoose.connection;
+const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 db.once("open", () => {
 	console.log("connect to db successfully!");
 });
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
@@ -34,6 +36,28 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(expressLayouts);
+
+app.use(
+	session({
+		secret: "keyboard cat",
+		resave: false,
+		saveUninitialized: true
+	})
+);
+app.use(
+	flash(app, {
+		sessionName: "flash",
+		utilityName: "flash",
+		localsName: "flash",
+		viewName: "elements/flash",
+		beforeSingleRender: function(item, callback) {
+			callback(null, item);
+		},
+		afterAllRender: function(htmlFragments, callback) {
+			callback(null, htmlFragments.join("\n"));
+		}
+	})
+);
 
 app.locals.systemConfig = systemConfig;
 

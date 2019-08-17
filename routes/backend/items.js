@@ -12,7 +12,7 @@ router.get("/(:status)?", (req, res) => {
 	let keyword = ParamsHelper.getParam(req.query, "keyword", "");
 	let pagination = {
 		totalItems: 1,
-		totalItemsPerPage: 5,
+		totalItemsPerPage: 3,
 		currentPage: parseInt(ParamsHelper.getParam(req.query, "page", 1)),
 		pageRanges: 3
 	};
@@ -62,6 +62,11 @@ router.get("/change-status/:id/:status", (req, res, next) => {
 
 	currentStatus === "active" ? (status = "inactive") : (status = "active");
 	ItemsModel.updateOne({ _id: id }, { status: status }, (err, raw) => {
+		req.flash({
+			type: "success",
+			message: "Thay đổi Status thành công",
+			redirect: false
+		});
 		res.redirect(linkIndex);
 	});
 });
@@ -73,6 +78,11 @@ router.post("/change-status/:status", (req, res, next) => {
 		{ _id: { $in: req.body.cid } },
 		{ status: currentStatus },
 		(err, raw) => {
+			req.flash({
+				type: "success",
+				message: "Thay đổi Status thành công của " + raw.n + " phần tử",
+				redirect: false
+			});
 			res.redirect(linkIndex);
 		}
 	);
@@ -80,6 +90,11 @@ router.post("/change-status/:status", (req, res, next) => {
 
 router.post("/delete", (req, res, next) => {
 	ItemsModel.remove({ _id: { $in: req.body.cid } }, err => {
+		req.flash({
+			type: "success",
+			message: "Xoá thành công",
+			redirect: false
+		});
 		res.redirect(linkIndex);
 	});
 });
@@ -88,7 +103,22 @@ router.post("/delete", (req, res, next) => {
 router.get("/delete/:id", (req, res, next) => {
 	// let systemConfig = req.app.locals.systemConfig;
 	ItemsModel.deleteOne({ _id: req.params.id }, err => {
+		req.flash({
+			type: "success",
+			message: "Xoá thành công",
+			redirect: false
+		});
 		res.redirect(linkIndex);
+	});
+});
+
+router.post("/delete", (req, res, next) => {
+	ItemsModel.remove({ _id: { $in: req.body.cid } }, (err, raw) => {
+		req.flash({
+			type: "success",
+			message: `Xoá thành công ${raw.n} items`,
+			redirect: false
+		});
 	});
 });
 
@@ -111,6 +141,12 @@ router.post("/change-ordering", (req, res, next) => {
 			(err, raw) => {}
 		);
 	}
+	req.flash({
+		type: "success",
+		message: "Cập nhật ordering thành công " + cids.length + " phần tử!",
+		redirect: false
+	});
+
 	res.redirect(linkIndex);
 });
 
