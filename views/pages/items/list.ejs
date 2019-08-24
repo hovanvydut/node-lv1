@@ -82,8 +82,10 @@
                                     <td><input type="number" value="<%= item.ordering %>" class="text-center ordering">
                                     </td>
                                     <td>
-                                        <a href="#" type="button" class="btn btn-warning btn-sm">Edit</a>
-                                        <a href="<%= systemConfig.prefixAdmin %>/items/delete/<%= item._id %>" type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
+                                        <a href="<%= systemConfig.prefixAdmin %>/items/edit/form/<%= item._id %>"
+                                            type="button" class="btn btn-warning btn-sm">Edit</a>
+                                        <a href="<%= systemConfig.prefixAdmin %>/items/delete/<%= item._id %>"
+                                            type="button" class="btn btn-danger btn-sm btn-delete">Delete</a>
                                     </td>
                                 </tr>
                                 <% }); %>

@@ -150,8 +150,62 @@ router.post("/change-ordering", (req, res, next) => {
 	res.redirect(linkIndex);
 });
 
-router.get("/add", (req, res) => {
-	res.render("pages/items/add", { title: "Item add Page" });
+router.get("/edit/form(/:id)?", (req, res, next) => {
+	let id = req.params.id;
+	if (id === undefined) {
+		// ADD
+		let responseData = {
+			name: "",
+			status: "",
+			ordering: 0
+		};
+		res.render("pages/items/form.ejs", {
+			title: "Item Manager - Add",
+			responseData
+		});
+	} else {
+		// EDIT
+		ItemsModel.findById(id).exec((err, raw) => {
+			let responseData = {
+				name: raw.name,
+				status: raw.status,
+				ordering: raw.ordering
+			};
+			res.render("pages/items/form.ejs", {
+				title: "Item Manager - Edit",
+				responseData
+			});
+		});
+	}
+});
+
+router.post("/save", (req, res, next) => {
+	ItemsModel.exists({ name: new RegExp(req.body.name, "i") }).then(result => {
+		if (!result) {
+			console.log(req.body["abc"]);
+			let name = req.body.name;
+			let ordering = req.body.ordering;
+			let status = req.body.status;
+
+			// create document `item`
+			let item = new ItemsModel({ name, status, ordering });
+			item.save().then(() => {
+				req.flash({
+					type: "success",
+					message: "Ok. Đã thêm một phần tử!",
+					redirect: false
+				});
+				res.redirect(linkIndex);
+			});
+		} else {
+			req.flash({
+				type: "warning",
+				message: "Vui long chon ten khac!",
+				redirect: false
+			});
+			res.redirect(linkIndex + "/edit/form/");
+		}
+	});
 });
 
 module.exports = router;

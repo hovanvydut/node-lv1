@@ -13,7 +13,7 @@ actionHelper = (collection) => {
         let link = systemConfig.prefixAdmin + '/' + collection + '/' + action.value;
         xhtml+= `<option value="admin22/${collection}/${action.value}">${action.name}</option>`
     }
-    let linkAddNew = systemConfig.prefixAdmin + `/${collection}/add`;
+    let linkAddNew = `${systemConfig.prefixAdmin}/${collection}/edit/form/`;
     return `<div class="zcontrols">
             <select name="action" class="form-control slbAction">
                 ${xhtml}
